@@ -231,6 +231,10 @@ private:
         while(a.getType() != b.getType()) a.getType() < b.getType() ? a.getNext() : b.getNext();
         if(a.getType() == Bool) a = a.toInt(), b = b.toInt();
     }
+    friend inline void fixType2(DataType &a, DataType &b) { // for calc without bool
+        fixType(a, b);
+        if(a.getType() == Bool) a.getNext(), b.getNext();
+    }
 public:
     Type tpe;
     bool data_Bool;
@@ -260,9 +264,15 @@ public:
     }
     inline DataType toString() const {
         if(tpe == String) return *this;
-        if(tpe == None) return DataType("None");
         DataType ret(String);
-        ret.data_String = toInt().data_Int.toString();
+        if(tpe == None) ret.data_String = "None";
+        if(tpe == Bool) ret.data_String = data_Bool ? "True" : "False";
+        if(tpe == Int) ret.data_String = data_Int.toString();
+        if(tpe == Float) {
+            static char buf[1010];
+            sprintf(buf, "%0.6f", data_Float);
+            ret.data_String = string(buf);
+        }
         return ret;
     }
     inline DataType toBool() const {
@@ -285,13 +295,13 @@ public:
         }
     }
     friend DataType operator + (DataType a, DataType b) {
-        fixType(a, b);
+        fixType2(a, b);
         if(a.getType() == Int) return DataType(a.data_Int + b.data_Int);
         if(a.getType() == Float) return DataType(a.data_Float + b.data_Float);
         if(a.getType() == String) return DataType(a.data_String + b.data_String);
     }
     friend DataType operator - (DataType a, DataType b) {
-        fixType(a, b);
+        fixType2(a, b);
         if(a.getType() == Int) return DataType(a.data_Int - b.data_Int);
         if(a.getType() == Float) return DataType(a.data_Float - b.data_Float);
     }
@@ -307,12 +317,12 @@ public:
             for(BigInt i = 1, t = b.toInt().data_Int; i <= t; i++) ret = ret + a.data_String;
             return DataType(ret);
         }
-        fixType(a, b);
+        fixType2(a, b);
         if(a.getType() == Int) return DataType(a.data_Int * b.data_Int);
         if(a.getType() == Float) return DataType(a.data_Float * b.data_Float);
     }
     friend DataType operator / (DataType a, DataType b) {
-        fixType(a, b);
+        fixType2(a, b);
         if(a.getType() == Int) a.getNext(), b.getNext();
         if(a.getType() == Float) return DataType(a.data_Float / b.data_Float);
     }
@@ -339,7 +349,7 @@ public:
         return !(a == b);
     }
     friend bool operator < (DataType a, DataType b) {
-        fixType(a, b);
+        fixType2(a, b);
         if(a.getType() == Int) return a.data_Int < b.data_Int;
         if(a.getType() == Float) return a.data_Float < b.data_Float; // dcmp(a.data_Float, b.data_Float) < 0;
         if(a.getType() == String) return a.data_String < b.data_String;
