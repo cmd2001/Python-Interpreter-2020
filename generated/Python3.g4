@@ -133,18 +133,18 @@ and_test: not_test ('and' not_test)*;
 not_test: 'not' not_test | comparison;
 comparison: arith_expr (comp_op arith_expr)*;
 comp_op: '<'|'>'|'=='|'>='|'<=' | '!=';
-arith_expr: term (addorsub_op term)*;
-addorsub_op: '+'|'-';
-term: factor (muldivmod_op factor)*;
-muldivmod_op: '*'|'/'|'//'|'%';
-factor: ('+'|'-') factor | atom_expr;
+arith_expr: term (addsub_op term)*;
+term: factor (muls_op factor)*;
+factor: addsub_op factor | atom_expr;
+addsub_op: '+' | '-';
+muls_op: '*'|'/'|'//'|'%';
 atom_expr: atom trailer?;
 trailer: '(' (arglist)? ')' ;
 atom: (NAME | NUMBER | STRING+| 'None' | 'True' | 'False' | ('(' test ')'));
 testlist: test (',' test)* (',')?;//算式  eg： a,b   a   a+b
 arglist: argument (',' argument)*  (',')?;
 argument: ( test |
-            test '=' test );
+            NAME '=' test );
 STRING
  : STRING_LITERAL
  | BYTES_LITERAL

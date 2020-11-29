@@ -1,5 +1,5 @@
 
-// Generated from Python3.g4 by ANTLR 4.7.2
+// Generated from Python3.g4 by ANTLR 4.7.1
 
 
 #include "Python3Lexer.h"
@@ -13,10 +13,8 @@ Python3Lexer::Python3Lexer(CharStream *input) : Lexer(input) {
 }
 
 Python3Lexer::~Python3Lexer() {
-delete _interpreter;
-for(auto token:tokens){
-delete token;
-}
+  delete _interpreter;
+  for(auto token: tokens) delete token;
 }
 
 std::string Python3Lexer::getGrammarFileName() const {

@@ -1,5 +1,5 @@
 
-// Generated from Python3.g4 by ANTLR 4.7.2
+// Generated from Python3.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -89,17 +89,17 @@ public:
   virtual void enterArith_expr(Python3Parser::Arith_exprContext *ctx) = 0;
   virtual void exitArith_expr(Python3Parser::Arith_exprContext *ctx) = 0;
 
-  virtual void enterAddorsub_op(Python3Parser::Addorsub_opContext *ctx) = 0;
-  virtual void exitAddorsub_op(Python3Parser::Addorsub_opContext *ctx) = 0;
-
   virtual void enterTerm(Python3Parser::TermContext *ctx) = 0;
   virtual void exitTerm(Python3Parser::TermContext *ctx) = 0;
 
-  virtual void enterMuldivmod_op(Python3Parser::Muldivmod_opContext *ctx) = 0;
-  virtual void exitMuldivmod_op(Python3Parser::Muldivmod_opContext *ctx) = 0;
-
   virtual void enterFactor(Python3Parser::FactorContext *ctx) = 0;
   virtual void exitFactor(Python3Parser::FactorContext *ctx) = 0;
+
+  virtual void enterAddsub_op(Python3Parser::Addsub_opContext *ctx) = 0;
+  virtual void exitAddsub_op(Python3Parser::Addsub_opContext *ctx) = 0;
+
+  virtual void enterMuls_op(Python3Parser::Muls_opContext *ctx) = 0;
+  virtual void exitMuls_op(Python3Parser::Muls_opContext *ctx) = 0;
 
   virtual void enterAtom_expr(Python3Parser::Atom_exprContext *ctx) = 0;
   virtual void exitAtom_expr(Python3Parser::Atom_exprContext *ctx) = 0;

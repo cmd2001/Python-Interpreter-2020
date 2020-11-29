@@ -1,5 +1,5 @@
 
-// Generated from Python3.g4 by ANTLR 4.7.2
+// Generated from Python3.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -115,19 +115,19 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitAddorsub_op(Python3Parser::Addorsub_opContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitTerm(Python3Parser::TermContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMuldivmod_op(Python3Parser::Muldivmod_opContext *ctx) override {
+  virtual antlrcpp::Any visitFactor(Python3Parser::FactorContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitFactor(Python3Parser::FactorContext *ctx) override {
+  virtual antlrcpp::Any visitAddsub_op(Python3Parser::Addsub_opContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitMuls_op(Python3Parser::Muls_opContext *ctx) override {
     return visitChildren(ctx);
   }
 
