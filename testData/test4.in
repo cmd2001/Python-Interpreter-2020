@@ -1,5 +1,0 @@
-#Upper Case and Lower Case
-a = 1
-A = True
-b = A
-print(b)
